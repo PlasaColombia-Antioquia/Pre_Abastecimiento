@@ -28,4 +28,4 @@ grp_alim <- c("PESCADOS","HUEVOS-LACTEOS","GRANOS","CARNES","PROCESADOS","TUBERC
 
 # Aquí se filtra solo para Antioquia
 future_lapply(grp_alim,alimen_cleaned)
-
+ 

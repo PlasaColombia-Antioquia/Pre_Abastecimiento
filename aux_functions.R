@@ -163,7 +163,7 @@ alimen_cleaned <- function(gr) {
     ### Write
     saveRDS(ds_out, paste0("Output/cleaned_products/",gr,".rds"))
 
-    print(parte0(gr," -- LISTO !"))
+    print(paste0(gr," -- LISTO !"))
 
 }
 
@@ -186,7 +186,7 @@ routes_outliers <- function(i,ds_out,routes) {
     return(do.call(rbind,lapply(alim, outliers_alim,ds_out1=ds_out1)))
 
 }
-
+ 
 
 ### 04 - Remover Outliers en Alimentos
 ##################
