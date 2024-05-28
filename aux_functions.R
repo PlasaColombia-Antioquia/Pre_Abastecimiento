@@ -146,7 +146,7 @@ alimen_cleaned <- function(gr) {
     ds_out <- ds_out %>% mutate(cantidad_kg=as.numeric(cantidad_kg))
 
     ### Datos antioquia
-    ds_out <- ds_out[(ds_out$depto_origen=="ANTIOQUIA" | ds_out$mpio_destino == "Medellín"),]
+    #ds_out <- ds_out[(ds_out$depto_origen=="ANTIOQUIA" | ds_out$mpio_destino == "Medellín"),]
     
     ### Routes Information
     routes <- ds_out[!duplicated(ds_out[c("mpio_origen","mpio_destino")]),

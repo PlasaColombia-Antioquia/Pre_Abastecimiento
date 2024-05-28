@@ -9,7 +9,7 @@
 
 # Cargar las bibliotecas necesarias
   pacman::p_load(readr,readxl,dplyr,glue,openxlsx,foreign,janitor,plyr,writexl)
-  pacman::p_load(readr,lubridate,dplyr,ggplot2,zoo,mvoutlier,future.apply,future)
+  pacman::p_load(readr,lubridate,dplyr,ggplot2,zoo,mvoutlier,future.apply,future,tidyr)
   pacman::p_load(performance) # Outliers check_outliers()
   # devtools::install_github("brunocarlin/tidy.outliers")
   #install.packages("performance")

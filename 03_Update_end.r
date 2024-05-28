@@ -8,7 +8,7 @@
 ################################################################################
 
 # Cargar las bibliotecas necesarias
-pacman::p_load(readr,readxl,dplyr,glue,openxlsx,foreign,janitor,plyr )
+pacman::p_load(readr,readxl,dplyr,glue,openxlsx,foreign,janitor,plyr,dplyr)
 pacman::p_load(readr,lubridate,dplyr,ggplot2,zoo)
 
 ### ABASTECIMIENTO - MICRODATOS ################################################
@@ -40,8 +40,33 @@ update <- rd_ds(2024) %>% mutate(grupo_short=recode(grupo_alimento,
     lapply(grp_alim,merge_end)
 
     ## Base de datos final
-    out_add <- readRDS(glue("Output/cleaned_products/","PESCADOS",".rds"))
+    out_add <- readRDS(glue("Output/final_products/","PESCADOS",".rds"))
     for (g in grp_alim[2:8]) {
-        out_add <- rbind(out_add,readRDS(glue("Output/cleaned_products/",g,".rds")))
+        out_add <- rbind(out_add,readRDS(glue("Output/final_products/",g,".rds")))
     }
-    saveRDS(out_add, paste0("Output/base_abastecimiento_mensual_no_outliers.rds"))
+    saveRDS(out_add, paste0("Output/base_abastecimiento_no_outliers.rds"))
+    
+ 
+    
+# HASTA AQUI        
+    
+
+  # Agrupamos la base a nivel mensual (sumamos los kg - meses)
+    
+    fecha <- as.Date(out_add$fecha)
+    out_add$mes_y_ano <- format(fecha, "%Y-%m")
+    
+    out_add2 <- out_add %>% mutate(cantidad_kg=as.numeric(cantidad_kg))%>%tidyr::drop_na()%>%
+      dplyr::group_by(codigo_mpio_destino, codigo_mpio_origen, mpio_destino, depto_origen,mpio_origen,grupo_alimento,alimento,mes_y_ano)%>%
+      dplyr::summarise(suma_kg = sum((cantidad_kg), na.rm = TRUE)) %>%
+      ungroup()
+    
+  # Exportamos la base de datos mensual. Teniendo outliers
+    saveRDS(out_add2, "Output/base_abastecimiento_mensual_no_outliers.rds")
+    
+    
+    
+    
+    
+    
+    
