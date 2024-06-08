@@ -19,7 +19,7 @@ grp_alim <- c("PESCADOS","HUEVOS-LACTEOS","GRANOS","CARNES","PROCESADOS","TUBERC
 
 
 ## Actualizar 
-download.file(url = "https://www.dane.gov.co/files/operaciones/SIPSA/anex-SIPSAbastecimiento-Microdatos-2024.xlsx", 
+download.file(url = "https://www.dane.gov.co/files/operaciones/SIPSA/anex-Microdato-abastecimiento-2024.xlsx", 
                 destfile = "Input/anex-Microdato-abastecimiento-2024.xlsx", mode="wb")
 
 # Update date
